@@ -5,8 +5,9 @@ services:
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG=${DEBUG:-False}
       - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      - DB_PATH=/app/data/db.sqlite3
     volumes:
-      - db_data:/app/db.sqlite3
+      - db_data:/app/data
       - static_data:/app/staticfiles
     expose:
       - "8000"
