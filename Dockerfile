@@ -14,4 +14,4 @@ RUN python manage.py collectstatic --noinput
 
 EXPOSE 8000
 
-CMD ["gunicorn", "sisnum.wsgi:application", "--bind", "0.0.0.0:8000", "--workers", "1"]
+CMD ["sh", "-c", "python manage.py migrate --noinput && gunicorn sisnum.wsgi:application --bind 0.0.0.0:8000 --workers 1"]
