@@ -38,4 +38,4 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/')" || exit 1
 
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "--worker-class", "sync", "--worker-tmp-dir", "/dev/shm", "--timeout", "30", "--graceful-timeout", "5", "--access-logfile", "-", "--error-logfile", "-", "sisnum.wsgi:application"]
+CMD ["gunicorn", "--bind", ":8000", "--workers", "1", "--worker-class", "sync", "--worker-tmp-dir", "/dev/shm", "--timeout", "30", "--graceful-timeout", "5", "--access-logfile", "-", "--error-logfile", "-", "sisnum.wsgi:application"]

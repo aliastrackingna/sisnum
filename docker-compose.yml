@@ -9,6 +9,7 @@ services:
     env_file:
       - .env
     volumes:
+      - db_volume:/app
       - static_volume:/app/staticfiles
       - media_volume:/app/media
     healthcheck:
@@ -41,6 +42,7 @@ services:
       - sisnum_network
 
 volumes:
+  db_volume:
   static_volume:
   media_volume:
 
