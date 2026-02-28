@@ -2,8 +2,13 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from django.http import JsonResponse
 from .models import TipoDocumento
 from .forms import TipoDocumentoForm
+
+
+def health(request):
+    return JsonResponse({'status': 'ok'})
 
 @login_required(login_url='login')
 def index(request):
