@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}500 - Erro Interno{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="text-center">
+        <h1 class="display-1 text-muted">500</h1>
+        <h2>Erro Interno do Servidor</h2>
+        <p class="text-muted">Algo deu errado. Tente novamente mais tarde.</p>
+        <a href="{% url 'index' %}" class="btn btn-primary">Voltar ao Início</a>
+    </div>
+</div>
+{% endblock %}

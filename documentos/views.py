@@ -2,12 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from ratelimit.decorators import ratelimit
 from .models import TipoDocumento
 from .forms import TipoDocumentoForm
 
-
-@ratelimit(key='ip', rate='10/m', block=True)
 @login_required(login_url='login')
 def index(request):
     tipos = TipoDocumento.objects.all().order_by('nome')
@@ -20,17 +17,12 @@ def index(request):
             messages.success(request, 'Tipo de documento cadastrado com sucesso!')
             return redirect('index')
     
-    logo_url = settings.MEDIA_URL + 'logo.png'
-    
     context = {
         'tipos': tipos,
         'form': form,
-        'logo_url': logo_url,
     }
     return render(request, 'documentos/index.html', context)
 
-
-@ratelimit(key='ip', rate='10/m', block=True)
 @login_required(login_url='login')
 def incrementar(request, tipo_id):
     tipo = get_object_or_404(TipoDocumento, pk=tipo_id)
@@ -39,8 +31,6 @@ def incrementar(request, tipo_id):
     messages.success(request, f'Número do {tipo.nome} incrementado para {tipo.ultimo_numero}')
     return redirect('index')
 
-
-@ratelimit(key='ip', rate='10/m', block=True)
 @login_required(login_url='login')
 def zerar_todos(request):
     if request.method == 'POST':
@@ -48,8 +38,6 @@ def zerar_todos(request):
         messages.warning(request, 'Todas as numerações foram zeradas!')
     return redirect('index')
 
-
-@ratelimit(key='ip', rate='10/m', block=True)
 @login_required(login_url='login')
 def excluir_tipo(request, tipo_id):
     tipo = get_object_or_404(TipoDocumento, pk=tipo_id)
@@ -58,8 +46,6 @@ def excluir_tipo(request, tipo_id):
     messages.success(request, f'Tipo de documento "{nome}" excluído!')
     return redirect('index')
 
-
-@ratelimit(key='ip', rate='10/m', block=True)
 @login_required(login_url='login')
 def editar_numero(request, tipo_id):
     tipo = get_object_or_404(TipoDocumento, pk=tipo_id)
