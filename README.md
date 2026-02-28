@@ -24,18 +24,17 @@ Aplicação Django para controle sequencial de numeração de documentos adminis
 
 - Docker instalado
 - Portainer CE instalado e acessível
-- Arquivo `.env` configurado na raiz do projeto
 
-### Variáveis de Ambiente (.env)
+### Variáveis de Ambiente
 
-Crie um arquivo `.env` na raiz do projeto:
+No Portainer, você pode passar as variáveis diretamente na seção "Environment" do stack:
 
-```env
-SECRET_KEY=sua-chave-secreta-aqui-minimo-50-caracteres
-DEBUG=False
-ALLOWED_HOSTS=seu-dominio.com,www.seu-dominio.com
-NGINX_PORT=80
-```
+| Variável | Descrição | Exemplo |
+|----------|-----------|---------|
+| `SECRET_KEY` | Chave secreta do Django (mínimo 50 caracteres) | `sua-chave-aqui...` |
+| `DEBUG` | Modo debug (True/False) | `False` |
+| `ALLOWED_HOSTS` | Hosts permitidos (separados por vírgula) | `localhost,127.0.0.1,seu-dominio.com` |
+| `NGINX_PORT` | Porta do Nginx | `80` |
 
 ### Método 1: Usando Stacks (Recomendado)
 
@@ -43,12 +42,14 @@ NGINX_PORT=80
 2. Vá em **Stacks** > **Add stack**
 3. Selecione **Web editor**
 4. Copie e cole o conteúdo do arquivo `docker-compose.yml`
-5. No campo "Environment", adicione as variáveis:
-   - `SECRET_KEY`: Sua chave secreta
-   - `DEBUG`: `False`
-   - `ALLOWED_HOSTS`: Seu domínio
-   - `NGINX_PORT`: `80` (ou porta desejada)
+5. Na seção **Environment variables**, adicione:
+   - Clique em "Add environment variable"
+   - Adicione cada variável da tabela acima
+   - Em **name**: `SECRET_KEY`, **value**: sua chave
+   - Repita para as outras variáveis
 6. Clique em **Deploy the stack**
+
+**Nota**: Não é necessário criar arquivo `.env` local, as variáveis são passadas diretamente no Portainer.
 
 ### Método 2: Usando Git Repository
 
