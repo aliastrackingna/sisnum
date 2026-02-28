@@ -14,10 +14,10 @@ services:
       - media_volume:/app/media
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/')"]
-      interval: 30s
+      interval: 5m
       timeout: 5s
       retries: 3
-      start_period: 15s
+      start_period: 30s
     networks:
       - sisnum_network
 
@@ -35,7 +35,7 @@ services:
         condition: service_healthy
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
-      interval: 30s
+      interval: 5m
       timeout: 5s
       retries: 3
     networks:
