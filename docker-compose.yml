@@ -11,7 +11,7 @@ services:
       - DEBUG=${DEBUG}
       - ALLOWED_HOSTS=${ALLOWED_HOSTS}
     volumes:
-      - db_volume:/app
+      - ./db.sqlite3:/app/db.sqlite3
       - static_volume:/app/staticfiles
       - media_volume:/app/media
     healthcheck:
@@ -44,7 +44,6 @@ services:
       - sisnum_network
 
 volumes:
-  db_volume:
   static_volume:
   media_volume:
 
