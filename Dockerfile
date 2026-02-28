@@ -29,7 +29,10 @@ RUN useradd --create-home --shell /bin/bash pyapp && \
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 
-COPY --chown=pyapp:pyapp . .
+COPY . .
+
+RUN mkdir -p /app/staticfiles /app/media /app/static && \
+    chown -R pyapp:pyapp /app
 
 RUN chmod +x /app/entrypoint.sh
 

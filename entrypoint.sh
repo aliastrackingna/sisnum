@@ -1,10 +1,6 @@
 #!/bin/bash
 set -e
 
-# Criar diretórios com permissão correta
-mkdir -p /app/staticfiles /app/media
-chown -R pyapp:pyapp /app
-
 echo "Running migrations..."
 python manage.py migrate --noinput
 
