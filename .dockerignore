@@ -31,5 +31,4 @@ docker-compose.yml
 Dockerfile
 .dockerignore
 nginx/
-static/
 media/
