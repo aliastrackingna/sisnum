@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 8000
 
-CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --noinput && gunicorn sisnum.wsgi:application --bind 0.0.0.0:8000 --workers 1"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --noinput && python manage.py shell -c \"from django.contrib.auth.models import User; User.objects.filter(username='admin').exists() or User.objects.create_superuser('admin', '', 'admin')\" && gunicorn sisnum.wsgi:application --bind 0.0.0.0:8000 --workers 1"]

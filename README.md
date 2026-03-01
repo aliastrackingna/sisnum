@@ -85,6 +85,18 @@ No Portainer, você pode passar as variáveis diretamente na seção "Environmen
 
 6. Depois crie um stack manualmente com compose
 
+## Primeiro Acesso
+
+Um superusuário padrão é criado automaticamente na primeira execução:
+
+- **Usuário**: `admin`
+- **Senha**: `admin`
+
+> **IMPORTANTE**: Altere a senha padrão imediatamente após o primeiro login. Acesse `/admin/` e vá em **Alterar senha** ou use o comando:
+> ```bash
+> docker-compose exec web python manage.py changepassword admin
+> ```
+
 ## Acessando a Aplicação
 
 Após deploy, a aplicação estará disponível em:
